@@ -21,36 +21,29 @@ function setup() {
 }
 
 function draw() {
-	var starX;
-	var starY;
-	var trajX;
-	var trajY;
-	//shootingStar object literal
-	var shootingStar = {
-		//properties: xy starting position and xy trajectory values
-		starX: mouseX,
-		starY: mouseY,
-		trajX: random(-10, 10),
-		trajY: random(-10, 10),
-		//move function
-		//changes the star's xy by traj xy
-		/*move : function() {
-			print('starX is ' + starX + ' and starY is ' + starY);
-			print('trajX is ' + trajX + ' and trajY is ' + trajY);
-			starX+=trajX;
-			starY+=trajY;
-			print('starX is ' + starX + ' and starY is ' + starY);*/
-			//stop moving/delete obj if it has moved far enough
-		//}
-	};
+	//make a star
+	var starX = mouseX;
+	var starY = mouseY;
+	var trajX = random(-50, 50);
+	var trajY = random(-50, 50);;
 	
 	if (mouseIsPressed) {
-		//create a shootingStar object
-		//var shootingStar;
+		//draw the star
+		ellipse(starX, starY, 10,10);
+		//move the star
 		print('mouse pressed');
-		shootingStar.starX+=trajX;
-		shootingStar.starY+=trajY;
-		//print('shootingStar.move done');
+		print('starX is ' + starX + ' and starY is ' + starY);
+		print('trajX is ' + trajX + ' and trajY is ' + trajY);
+		let j = 1000;
+		while (j > 0) {
+			print('while loop number ' + j);
+			starX+=trajX;
+			starY+=trajY;
+			ellipse(starX, starY, 10,10);
+			print('end while loop: starX is ' + starX + ' and starY is ' + starY);
+			j-=100;
+		}
+		print('shootingStar.move done');
 	}
 }
 
