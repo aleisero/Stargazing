@@ -6,7 +6,6 @@ function setup() {
 	createCanvas(640,480);
 	//background color of night sky - navy blue
 	background(0, 51,102);
-	print('made bg');
   
 	//while loop to create numStars number of stars
 	while (i < numStars) {
@@ -17,43 +16,42 @@ function setup() {
 		noStroke();
 		fill(255,255,255);
 		ellipse(x, y, 2,2);
-		print('made star ' + i);
 		i++;
 	}
 }
 
 function draw() {
-	//when mouse is pressed, create an instance of the shootingStar class
-	if (mouseIsPressed) {
-		//create an instance of the shootingStar class
-		ShootingStar star;
-		star = new ShootingStar();
-		star.move();
-	}
-}
-
-//ShootingStar class
-class ShootingStar {
-	//each instance of the shootingStar class has an ellipse
 	var starX;
 	var starY;
 	var trajX;
 	var trajY;
-
-	//ShootingStar constructor
-	ShootingStar(){
-		starX = mouseX;
-		starY = mouseY;
-		trajX = random(-10, 10);
-		trajY = random(-10, 10);
-	}
-
-	//move function for ShootingStar class
-	void move() {
-		//moves the star's x and y position by a random positive or negative amount
-		//also moves at a random speed (?)
-		starX+=trajX;
-		starY+=trajY;
-		//and for a specified duration (also probably random - IE, a random amount of frames within a range)
+	//shootingStar object literal
+	var shootingStar = {
+		//properties: xy starting position and xy trajectory values
+		starX: mouseX,
+		starY: mouseY,
+		trajX: random(-10, 10),
+		trajY: random(-10, 10),
+		//move function
+		//changes the star's xy by traj xy
+		/*move : function() {
+			print('starX is ' + starX + ' and starY is ' + starY);
+			print('trajX is ' + trajX + ' and trajY is ' + trajY);
+			starX+=trajX;
+			starY+=trajY;
+			print('starX is ' + starX + ' and starY is ' + starY);*/
+			//stop moving/delete obj if it has moved far enough
+		//}
+	};
+	
+	if (mouseIsPressed) {
+		//create a shootingStar object
+		//var shootingStar;
+		print('mouse pressed');
+		shootingStar.starX+=trajX;
+		shootingStar.starY+=trajY;
+		//print('shootingStar.move done');
 	}
 }
+
+	
