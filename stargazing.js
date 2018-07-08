@@ -1,20 +1,3 @@
-//ShootingStar class
-class ShootingStar() {
-	//each instance of the shootingStar class has an ellipse
-	var starX;
-	var starY;
-	var trajX;
-	var trajY;
-
-	//ShootingStar constructor
-	ShootingStar(){
-	starX = mouseX;
-	starY = mouseY;
-	trajX = random(-10, 10);
-	trajY = random(-10, 10);
-	}
-}
-
 function setup() {
 	//set variables
 	var numStars = 800;
@@ -43,6 +26,34 @@ function draw() {
 	//when mouse is pressed, create an instance of the shootingStar class
 	if (mouseIsPressed) {
 		//create an instance of the shootingStar class
-		ShootingStar star = new ShootingStar();
+		ShootingStar star;
+		star = new ShootingStar();
+		star.move();
+	}
+}
+
+//ShootingStar class
+class ShootingStar {
+	//each instance of the shootingStar class has an ellipse
+	var starX;
+	var starY;
+	var trajX;
+	var trajY;
+
+	//ShootingStar constructor
+	ShootingStar(){
+		starX = mouseX;
+		starY = mouseY;
+		trajX = random(-10, 10);
+		trajY = random(-10, 10);
+	}
+
+	//move function for ShootingStar class
+	void move() {
+		//moves the star's x and y position by a random positive or negative amount
+		//also moves at a random speed (?)
+		starX+=trajX;
+		starY+=trajY;
+		//and for a specified duration (also probably random - IE, a random amount of frames within a range)
 	}
 }
