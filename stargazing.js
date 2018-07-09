@@ -1,20 +1,10 @@
 //set a random seed to ensure that the BG stars do not move every frame
 var r = Math.random();
 
-function setup() {
-	createCanvas(640,480);
-	
-	//turn off the draw() loop so that the background can be redrawn on command rather than every frame
-	noLoop();
-}
-
-function draw() {
-	//choosing a random seed each time the program runs will ensure that the 
-	//stars are redrawn in the same positions each time the program is run
-	//even though the stars are redrawn every frame
+function makeSky() {
+	//apply random seed
 	randomSeed(r);
-	//print('randomSeed is ' + r);
-	
+
 	//set variables
 	var numStars = 800;
 	let i = 0;
@@ -33,11 +23,44 @@ function draw() {
 		ellipse(x, y, 2,2);
 		i++;
 	}
-	
-	print('draw');
 }
 
+function setup() {
+	createCanvas(640,480);
+	makeSky();
+	
+}
 
+function draw() {
+	//shooting star variables
+		var starX = mouseX;
+		var starY = mouseY;
+		var trajX = random(-1, 1);
+		var trajY = random(-1, 1);
+	
+	if (mouseIsPressed) {
+		print('mouseIsPressed');
+		//draw first ellipse of shooting star
+		ellipse(starX, starY, 2, 2);
+	}
+	
+	//check every frame
+	if (frameCount % 90 == 0) {
+		print('frameCount % 50 == 0');
+			
+		//update star Position for next frame
+		starX+=trajX;
+		starY+=trajY;
+			
+		//redraw star
+		ellipse(starX, starY, 2,2);
+			
+		//redraw sky
+		makeSky();
+		}
+}
+
+/*
 function mousePressed() {
 		//variables for shooting star
 		var starX = mouseX;
@@ -84,5 +107,5 @@ function mousePressed() {
 		
 		print('mousePressed function done');
 }
-
+*/
 	
