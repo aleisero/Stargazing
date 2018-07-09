@@ -1,7 +1,11 @@
-var r = Math.random(0,100);
+//set a random seed to ensure that the BG stars do not move every frame
+var r = Math.random();
 
 function setup() {
 	createCanvas(640,480);
+	
+	//turn off the draw() loop so that the background can be redrawn on command rather than every frame
+	noLoop();
 }
 
 function draw() {
@@ -30,35 +34,55 @@ function draw() {
 		i++;
 	}
 	
-	if (mouseIsPressed) {
-		
-		//variables for star info
+	print('draw');
+}
+
+
+function mousePressed() {
+		//variables for shooting star
 		var starX = mouseX;
 		var starY = mouseY;
 	
 		//reset randomSeed for trajectory of each shooting star so each is different
-		randomSeed(random(0,1000));
+		//it is set to a random range
+		//randomSeed(random(34,32453));
 	
-		var trajX = random(-10, 10);
-		var trajY = random(-10, 10);
+		var trajX = random(-1, 1);
+		var trajY = random(-1, 1);
 		
-		//draw the star
-		ellipse(starX, starY, 2,2);
-		//move the star
-		print('mouse pressed');
-		print('starX is ' + starX + ' and starY is ' + starY);
-		print('trajX is ' + trajX + ' and trajY is ' + trajY);
-		let j = 100;
+		let j = 200;
 		while (j > 0) {
-			print('while loop number ' + j);
+			//draw the star
+			ellipse(starX, starY, 2, 2);
+			print('draw shooting star');
+			
+			//move the star
 			starX+=trajX;
 			starY+=trajY;
+			
+			print('frameCount = ' + frameCount);
+			
+			//update the position and redraw star and BG based on frameCount
+			if (frameCount % 50 == 0) {
+				print('frameCount % 50 == 0');
+				//redraw BG
+				redraw();
+				//redraw star
+				ellipse(starX, starY, 2,2);
+			}
+			
+			//redraw the star
 			ellipse(starX, starY, 2,2);
-			print('end while loop: starX is ' + starX + ' and starY is ' + starY);
+			
+			//increment while loop
 			j-=1;
+			
+			//redraw the BG from the draw() function
+			//redraw();
+			//print('redraw BG');
 		}
-		print('shootingStar.move done');
-	}
+		
+		print('mousePressed function done');
 }
 
 	
