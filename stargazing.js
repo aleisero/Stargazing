@@ -9,7 +9,7 @@ function draw() {
 	//stars are redrawn in the same positions each time the program is run
 	//even though the stars are redrawn every frame
 	randomSeed(r);
-	print('randomSeed is ' + r);
+	//print('randomSeed is ' + r);
 	
 	//set variables
 	var numStars = 800;
